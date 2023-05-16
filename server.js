@@ -43,9 +43,21 @@ app.get("/members", async(req, res) => {
 
 
 
-app.get("/member/:id", (req, res) => {
-     res.render("memberDetail", { })
-})
+app.get("/member/:id", async (req, res) => {
+    const member = await membersCollection.findOne({ _id: new ObjectId(req.params.id) });
+    const date = member.date ? new Date(member.date) : null;
+    const formattedDate = date ? `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}` : null;
+
+    res.render("memberDetail", {
+        id: member._id,
+        name: member.name,
+        email: member.email,
+        phone: member.phone,
+        date: formattedDate,
+        favoriteAnime: member.favoriteAnime
+    });
+});
+
 
 
 app.get("/members/create", (req, res) => {

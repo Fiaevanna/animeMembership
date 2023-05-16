@@ -11,14 +11,14 @@
     <%- include('./components/header.ejs') %>
 
     <div class="mainContainer">
-      <ul>
+        <p class="memberTitle">Here you can se all of our members, feel free to click on their name!</p>
+      <div class="membersList">
         <% members.forEach((member) => { %>
-        <div>
-          <a href="/member/<%= member._id%>"><h3><%=member.name%></h3></a>
-          
+        <div class="memberCard">
+            <a href="/member/<%= member._id%>"><h3><%=member.name%></h3></a>
         </div>
         <% })%>
-      </ul>
+    </div>
     </div>
 
     <%- include('./components/footer.ejs') %>
