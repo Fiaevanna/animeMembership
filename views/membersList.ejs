@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-    <%- include('./components/header.ejs') %> 
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <%- include('./components/header.ejs') %>
 
-
-
-
-    <div class="mainContainer"> </div>
-
-
-
-
-
-
-
+    <div class="mainContainer">
+      <ul>
+        <% members.forEach((member) => { %>
+        <div>
+          <a href="/member/<%= member._id%>"><h3><%=member.name%></h3></a>
+          
+        </div>
+        <% })%>
+      </ul>
+    </div>
 
     <%- include('./components/footer.ejs') %>
-</body>
+  </body>
 </html>

@@ -22,21 +22,33 @@ app.listen(port, () => console.log(`Listening on ${port}`));
 const client = new MongoClient("mongodb://127.0.0.1:27017");
 await client.connect();
 
+
+//här sparar jag databasen i en variabel som jag vill annvända.
+const db = client.db("animeClub");
+const membersCollection = db.collection("members");
+
+
+
 /* Tar endpointen som jag använder i webbläsaren och kopplar till en templet som ska skickas till webbläsaren */
 
 app.get("/", async (req, res) => {
     res.render("home", { })
 })
 
-app.get("/members", (req, res) => {
-    res.render("membersList", { })
+// Här hämtar jag alla medlemar från min collection i db och omvandlar dem till en array och ger dem till rätt templet.
+app.get("/members", async(req, res) => {
+    const members = await membersCollection.find({}).toArray();
+    res.render("membersList", { members })
 })
 
+
+
 app.get("/member/:id", (req, res) => {
-     res.render("membersDetail", { })
+     res.render("memberDetail", { })
 })
 
 
 app.get("/members/create", (req, res) => {
     res.render("createMember", { })
 })
+
