@@ -8,18 +8,42 @@
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
-    <%- include('./components/header.ejs') %>
+    <% include('./components/header.ejs') %>
 
     <div class="mainContainer">
-      <h3>Name: <%= name %></h3>
-      <p>Email: <%= email %></p>
-      <p>Phone: <%= phone %></p>
-      <p>Date: <%= date %></p>
-      <p>Favorite Anime: <%= favoriteAnime %></p>
-      <button onclick="deleteMember()">Remove Member</button>
+        <h3>Member Information</h3>
+      <form action="/update-member/<%=id%>" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="<%= name %>" />
+        <br />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="<%= email %>" />
+        <br />
+
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" value="<%= phone %>" />
+        <br />
+
+        <label for="date">Date:</label>
+        <input type="text" id="date" name="date" value="<%= date %>" />
+        <br />
+
+        <label for="favoriteAnime">Favorite Anime:</label>
+        <input
+          type="text"
+          id="favoriteAnime"
+          name="favoriteAnime"
+          value="<%= favoriteAnime %>"
+        />
+        <br />
+
+        <button type="submit">Update Member</button>
+        <button onclick="deleteMember()">Remove Membership</button>
+      </form>
     </div>
 
-    <%- include('./components/footer.ejs') %>
+    <% include('./components/footer.ejs') %>
     <script src="/script.js"></script>
   </body>
 </html>

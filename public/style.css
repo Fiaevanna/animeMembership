@@ -73,8 +73,29 @@ footer {
   margin: 0 auto;
   width: 600px;
   padding: 15px;
+ 
 }
 
 .color {
-  background-color: #cfced36e;
+  background-color: #e29fd380;
+  border: 1px solid rgb(0, 0, 0);
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+
+}
+
+input{
+  margin-top: 3px;
+  margin-bottom: 10px;
+}
+
+button{
+  height: 40px;
+  background-color: #fea8ea6e;
+  font-size: 15px;
+  border: 1px solid black;
 }
