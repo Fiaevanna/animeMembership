@@ -62,9 +62,7 @@ app.get("/member/:id", async (req, res) => {
   }
 
   const date = member.date ? new Date(member.date) : null;
-  const formattedDate = date
-    ? `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
-    : null;
+  const formattedDate = date ? date.toISOString().split('T')[0] : null;
 
   res.render("memberDetail", {
     id: member._id,
