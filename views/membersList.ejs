@@ -12,6 +12,11 @@
 
     <div class="mainContainer">
         <p class="memberTitle">Here you can se all of our members, feel free to click on their name!</p>
+
+    
+        <button onclick="sortMembers('default')">Default</button>
+        <button onclick="sortMembers('asc')">A-Ö</button>
+        <button onclick="sortMembers('desc')">Ö-A</button>
       <div class="membersList">
         <% members.forEach((member) => { %>
         <div class="memberCard">
@@ -22,5 +27,10 @@
     </div>
 
     <%- include('./components/footer.ejs') %>
+    <script>
+      function sortMembers(sortType) {
+        window.location.href = `/members?sort=${sortType}`;
+      }
+    </script>
   </body>
 </html>

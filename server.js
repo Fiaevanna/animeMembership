@@ -34,9 +34,23 @@ app.get("/", async (req, res) => {
 
 // Här hämtar jag alla medlemar från min collection i db och omvandlar dem till en array och ger dem till rätt templet.
 app.get("/members", async (req, res) => {
-  const members = await membersCollection.find({}).toArray();
-  res.render("membersList", { members });
-});
+    const sortType = req.query.sort || "default";
+    let sortOption = {};
+  
+    if (sortType === "asc") {
+      sortOption = { name: 1 }; 
+    } else if (sortType === "desc") {
+      sortOption = { name: -1 }; 
+    }
+  
+    const members = await membersCollection
+      .find({})
+      .sort(sortOption)
+      .toArray();
+  
+    res.render("membersList", { members });
+  });
+  
 
 app.get("/member/:id", async (req, res) => {
   const member = await membersCollection.findOne({
@@ -100,3 +114,5 @@ app.post("/update-member/:id", async (req, res) => {
     res.redirect("/members");
   }
 });
+
+
